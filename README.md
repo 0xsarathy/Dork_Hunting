@@ -1,17 +1,19 @@
 # Dork_Hunting 🔍
 
-Dork_Hunting is an OSINT-based security tool designed to discover
-publicly exposed files and sensitive information using search engine dorks.
-It is intended for educational purposes, VAPT labs, and authorized security testing only.
+Dork_Hunting is an OSINT-based security tool that automates Google dork queries
+to identify **publicly indexed documents, backup files, and sensitive endpoints**
+associated with a target domain.
+
+This tool is intended for **learning, VAPT labs, bug bounty practice, and
+authorized security testing only**.
 
 ---
 
-## 🚀 Installation (No GitHub Login Required) ✅
+## 🚀 Installation (No GitHub Login Required)
 
-### 🔹 Method 1: Download ZIP (Recommended)
+### ✅ Method 1: Download ZIP (Recommended)
 
-This method does **NOT** require GitHub username or password  
-and works perfectly on **Kali Linux**.
+This method avoids GitHub username/password prompts (especially on Kali Linux).
 
 ```bash
 wget https://github.com/0xsarathy/Dork_Hunting/archive/refs/heads/main.zip
