@@ -1,0 +1,2 @@
+git clone https://github.com/0xsarathy/dorkhunt.git
+cd dorkhunt
