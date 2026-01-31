@@ -1,2 +1,9 @@
-git clone https://github.com/0xsarathy/dorkhunt.git
-cd dorkhunt
+## Installation (No GitHub Login Required)
+
+### Method 1: Download ZIP (Recommended)
+```bash
+wget https://github.com/0xsarathy/Dork_Hunting/archive/refs/heads/main.zip
+unzip main.zip
+cd Dork_Hunting-main
+pip install -r requirements.txt
+
