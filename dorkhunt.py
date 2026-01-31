@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 import requests
-import time
 
 EXTENSIONS = [
     "doc","docx","odt","pdf","rtf","ppt","pptx","csv",
@@ -16,27 +15,31 @@ def build_dork(domain, extensions):
     return f"site:*.{domain} ({ext_query})"
 
 def search(dork):
-    params = {"q": dork}
     headers = {"User-Agent": "Mozilla/5.0"}
-    r = requests.post(DUCKDUCKGO_API, data=params, headers=headers, timeout=10)
+    r = requests.post(DUCKDUCKGO_API, data={"q": dork}, headers=headers, timeout=15)
     return r.text
 
 def extract_links(html):
     results = []
     for line in html.splitlines():
         if "result__url" in line and "http" in line:
-            url = line.split("href=\"")[1].split("\"")[0]
-            results.append(url)
+            try:
+                url = line.split('href="')[1].split('"')[0]
+                results.append(url)
+            except:
+                pass
     return list(set(results))
 
 def main():
-    parser = argparse.ArgumentParser(description="DocHound - Public file exposure hunter")
-    parser.add_argument("-d", "--domain", required=True, help="Target domain")
-    parser.add_argument("-o", "--output", default="results.txt", help="Output file")
+    parser = argparse.ArgumentParser(
+        description="DorkHunt - Public document & sensitive file finder using dorks"
+    )
+    parser.add_argument("-d", "--domain", required=True, help="Target domain (example.com)")
+    parser.add_argument("-o", "--output", default="dorkhunt_results.txt", help="Output file")
     args = parser.parse_args()
 
     dork = build_dork(args.domain, EXTENSIONS)
-    print(f"[+] Using dork:\n{dork}\n")
+    print(f"[+] Dork used:\n{dork}\n")
 
     html = search(dork)
     links = extract_links(html)
@@ -45,8 +48,9 @@ def main():
         for link in links:
             f.write(link + "\n")
 
-    print(f"[+] Found {len(links)} files")
-    print(f"[+] Saved to {args.output}")
+    print(f"[+] Found {len(links)} exposed files")
+    print(f"[+] Results saved to {args.output}")
 
 if __name__ == "__main__":
     main()
+
