@@ -1,9 +1,11 @@
-## Installation (No GitHub Login Required)
+# Download ZIP from GitHub
+wget https://github.com/0xsarathy/Dork_Hunting/archive/refs/heads/main.zip -O Dork_Hunting.zip
 
-### Method 1: Download ZIP (Recommended)
-```bash
-wget https://github.com/0xsarathy/Dork_Hunting/archive/refs/heads/main.zip
-unzip main.zip
+# Extract it
+unzip Dork_Hunting.zip
+
+# Change directory
 cd Dork_Hunting-main
-pip install -r requirements.txt
 
+# Install dependencies
+pip3 install -r requirements.txt
